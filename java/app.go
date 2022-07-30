@@ -1469,7 +1469,7 @@ func (a *AndroidApp) genDataBindingSources(ctx android.ModuleContext) {
 		databindingSrcJars = append(databindingSrcJars, srcJar)
 	}
 
-	a.aaptProperties.Resource_dirs = make([]string, 0)
+	a.replaceRes = true
 
 	if a.appProperties.Data_binding.Data_binding {
 

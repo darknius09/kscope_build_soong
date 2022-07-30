@@ -113,6 +113,7 @@ type aapt struct {
 	LoggingParent           string
 	resourceFiles           android.Paths
 	appendResourceZips      android.Paths
+	replaceRes              bool
 
 	splitNames []string
 	splits     []split
@@ -310,6 +311,9 @@ func (a *aapt) buildActions(ctx android.ModuleContext, sdkContext android.SdkCon
 	}
 
 	resZips = append(resZips, a.appendResourceZips...)
+	if a.replaceRes {
+		resDirs = make([]globbedResourceDir, 0)
+	}
 
 	packageRes := android.PathForModuleOut(ctx, "package-res.apk")
 	// the subdir "android" is required to be filtered by package names
